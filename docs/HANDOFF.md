@@ -85,6 +85,23 @@ be crawlable (SSR/SSG).
   bundled Node with local `node_modules/.bin`.
 - `eslint` + `next build` green after simplifying posting language to
   source-language + English-only machine translation.
+- **2026-07 (Claude, re-sync after Codex's legal-pages + language-simplification
+  work):** `git fetch` + fast-forward pull to `ec29b9f`; confirmed log matches
+  owner's expected sequence (`ec29b9f` → `97495c9` → `ea21a80`). Fresh `npm
+  install` + `npm run build` + `npm run lint` — both green. Spot-checked the
+  diff: `[city]/post/page.tsx` no longer has the multi-language checkbox UI
+  (only a single "post language" select); `actions.ts` calls
+  `translateJobRequest` with `targets: source === "en" ? [] : ["en"]`;
+  `translate-request.ts` itself is unchanged (still a generic multi-target
+  helper — the English-only restriction lives at the call site, not the
+  helper); `0002_board.sql` diff is comment-only (no schema drift, no new
+  migration needed — `job_request_translations.lang_code` already supported
+  arbitrary locales). Build route table shows `/terms`, `/privacy`,
+  `/disclaimer` all present and SSR (`ƒ`), not static/client-only. Owner also
+  confirmed the app is deployed and reachable at
+  https://ed-s-cave.vercel.app/ (Vercel Preview, per `docs/DEPLOY.md`'s
+  branch→env mapping — not `main`, so this is the staging-tracking preview,
+  not production).
 
 ## NOT done — next work (priority order)
 1. **Done:** ToS / Privacy / Disclaimer standalone pages (trilingual draft) are
@@ -115,3 +132,20 @@ apply the two migrations + seed, then `set role anon` to test RLS.
 See `docs/DEPLOY.md`. Vercel + two Supabase projects (staging/prod), env per
 environment, `service_role` server-only. **Gotcha:** add `https://<domain>/*/auth/
 callback` to Supabase Auth → Redirect URLs, or magic-link login fails.
+
+## End of day — 2026-07-04
+Current HEAD: `ec29b9f` on `claude/newcomer-city-hub-arch-smclkz`. Working tree
+clean, `npm run build` + `npm run lint` green (verified by Claude after
+re-syncing with Codex's commits `97495c9` + `ec29b9f`).
+
+**Deployed and reachable:** https://ed-s-cave.vercel.app/ — this is a Preview
+deployment tracking this branch (per `docs/DEPLOY.md`'s branch→env table), NOT
+`main`/production. No Supabase project is wired up yet, so the live site is
+running in the "no env" degraded mode (empty data, but no crashes).
+
+**Nothing was started tonight beyond the HANDOFF sync above** — no code changes.
+The owner is stopping for the day. Next session, pick up from the "NOT done"
+list above; item 1 (legal pages) is done, item 2 (async English translation
+queue) or connecting a real Supabase project (see `docs/DEPLOY.md` steps 1–2)
+are the logical next steps. Re-read this file and run `git log --oneline -10`
+first — check whether Codex or Claude touched the repo since this entry.
