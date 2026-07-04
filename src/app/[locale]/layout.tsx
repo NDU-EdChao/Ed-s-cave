@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { isLocale, locales } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import Footer from "@/components/Footer";
 
 // Pre-render one static tree per locale.
 export function generateStaticParams() {
@@ -24,10 +26,14 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
 
   return (
     <html lang={locale} className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Footer locale={locale} dict={dict} />
+      </body>
     </html>
   );
 }

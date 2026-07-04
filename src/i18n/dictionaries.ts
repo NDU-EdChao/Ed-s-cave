@@ -7,7 +7,14 @@ import type { Locale } from "./config";
 
 export interface Dictionary {
   app: { name: string; tagline: string };
-  nav: { post: string; browse: string; home: string };
+  nav: {
+    post: string;
+    browse: string;
+    home: string;
+    terms: string;
+    privacy: string;
+    disclaimer: string;
+  };
   home: { heading: string; subheading: string; phase: string; cities: string };
   lang: { switch: string };
   categories: Record<string, string>;

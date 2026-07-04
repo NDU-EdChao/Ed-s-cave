@@ -7,7 +7,10 @@
   "nav": {
     "post": "发布需求",
     "browse": "浏览需求",
-    "home": "首页"
+    "home": "首页",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "disclaimer": "免责声明"
   },
   "home": {
     "heading": "在苏圣玛丽找本地帮手",

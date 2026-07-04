@@ -27,6 +27,15 @@ export default function Header({
           >
             {dict.nav.post}
           </Link>
+          <Link href={`/${locale}/terms`} className="text-zinc-500 hover:text-foreground">
+            {dict.nav.terms}
+          </Link>
+          <Link href={`/${locale}/privacy`} className="text-zinc-500 hover:text-foreground">
+            {dict.nav.privacy}
+          </Link>
+          <Link href={`/${locale}/disclaimer`} className="text-zinc-500 hover:text-foreground">
+            {dict.nav.disclaimer}
+          </Link>
           {signedIn ? (
             <>
               <Link href={`/${locale}/me`} className="text-zinc-500 hover:text-foreground">

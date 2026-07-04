@@ -78,15 +78,14 @@ be crawlable (SSR/SSG).
   closed requests.
 - `npm run build` + `lint` green. Prod server boots with NO env: `/`→`/en`,
   `/pa` SSR renders Gurmukhi, `Accept-Language: zh`→`/zh-Hans`.
+- `eslint` + `next build` green after adding trilingual Terms / Privacy /
+  Disclaimer pages and legal links. Local shell lacked `npm`, so verification used
+  bundled Node with local `node_modules/.bin`.
 
 ## NOT done — next work (priority order)
-1. **ToS / Privacy / Disclaimer standalone pages** (trilingual). Currently only an
-   inline disclaimer string. Upgrade Gate + needs lawyer review.
-   → **Assigned to Codex** (in progress/next, as of this handoff). Scope: three
-   trilingual routes under `src/app/[locale]/`, linked from `Header`/a new footer,
-   draft copy clearly marked as needing lawyer review, `npm run build` + `npm run
-   lint` green before commit. Do not start item 2+ until this is confirmed done
-   (check git log / this file) to avoid duplicate work.
+1. **Done:** ToS / Privacy / Disclaimer standalone pages (trilingual draft) are
+   under `src/app/[locale]/{terms,privacy,disclaimer}`. Header/Footer link them.
+   Legal text is still draft copy and needs lawyer + human language review.
 2. **Async translation queue** — move `translate-request.ts` off the request path
    to Supabase pg_cron/Edge Function; add retry + a `pending` state.
 3. **Translation proofreading UI** in `/me` — let posters edit MT (set

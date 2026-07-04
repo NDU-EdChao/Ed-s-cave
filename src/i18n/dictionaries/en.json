@@ -7,7 +7,10 @@
   "nav": {
     "post": "Post a request",
     "browse": "Browse requests",
-    "home": "Home"
+    "home": "Home",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "disclaimer": "Disclaimer"
   },
   "home": {
     "heading": "Find local help in Sault Ste. Marie",
