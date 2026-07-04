@@ -1,0 +1,19 @@
+{
+  "_status": "source",
+  "app": {
+    "name": "Sault Trades",
+    "tagline": "Local service requests for Sault Ste. Marie"
+  },
+  "nav": {
+    "post": "Post a request",
+    "browse": "Browse requests"
+  },
+  "home": {
+    "heading": "Find local help in Sault Ste. Marie",
+    "subheading": "Post what you need. Local tradespeople see it and reach out to you.",
+    "phase": "Phase 0 — foundation. Modules land next."
+  },
+  "lang": {
+    "switch": "Language"
+  }
+}

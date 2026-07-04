@@ -1,0 +1,19 @@
+{
+  "_status": "draft-machine-pending-human-review",
+  "app": {
+    "name": "Sault Trades",
+    "tagline": "苏圣玛丽本地服务需求"
+  },
+  "nav": {
+    "post": "发布需求",
+    "browse": "浏览需求"
+  },
+  "home": {
+    "heading": "在苏圣玛丽找本地帮手",
+    "subheading": "发布你的需求，本地技工看到后会主动联系你。",
+    "phase": "Phase 0 — 基础。功能模块随后加入。"
+  },
+  "lang": {
+    "switch": "语言"
+  }
+}

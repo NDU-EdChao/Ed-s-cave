@@ -1,0 +1,19 @@
+{
+  "_status": "draft-machine-pending-human-review",
+  "app": {
+    "name": "Sault Trades",
+    "tagline": "ਸੌਲਟ ਸਟੇ. ਮੈਰੀ ਲਈ ਸਥਾਨਕ ਸੇਵਾ ਬੇਨਤੀਆਂ"
+  },
+  "nav": {
+    "post": "ਬੇਨਤੀ ਪਾਓ",
+    "browse": "ਬੇਨਤੀਆਂ ਵੇਖੋ"
+  },
+  "home": {
+    "heading": "ਸੌਲਟ ਸਟੇ. ਮੈਰੀ ਵਿੱਚ ਸਥਾਨਕ ਮਦਦ ਲੱਭੋ",
+    "subheading": "ਆਪਣੀ ਲੋੜ ਪਾਓ। ਸਥਾਨਕ ਕਾਰੀਗਰ ਵੇਖ ਕੇ ਤੁਹਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰਨਗੇ।",
+    "phase": "Phase 0 — ਨੀਂਹ। ਮੋਡੀਊਲ ਅੱਗੇ ਆਉਣਗੇ।"
+  },
+  "lang": {
+    "switch": "ਭਾਸ਼ਾ"
+  }
+}
