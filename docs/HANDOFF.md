@@ -5,6 +5,26 @@ Work on branch `claude/newcomer-city-hub-arch-smclkz`. Do NOT push `main`/`stagi
 without explicit permission (production boundary). Keep `npm run build` + `npm run
 lint` green after every change. Commit in small steps.
 
+## Multi-agent collaboration on this project
+The owner is running **both Claude Code and Codex** on this repo, sequentially
+(not simultaneously) — Claude did Phase 0 + Phase 1 + this handoff doc, then
+handed off to Codex for the ToS/Privacy/Disclaimer pages (see item 1 below).
+**Implication:** before starting any work, run `git log --oneline -10` and
+re-read this file — it may have been updated by the other agent since you last
+saw it. If you are Codex picking this up: the code lives on **GitHub**
+(`NDU-EdChao/Ed-s-cave`, branch `claude/newcomer-city-hub-arch-smclkz`), not
+in a sibling folder on the owner's machine — clone it first:
+```bash
+git clone https://github.com/NDU-EdChao/Ed-s-cave.git
+cd Ed-s-cave
+git checkout claude/newcomer-city-hub-arch-smclkz
+```
+Verify you're in the right place before touching anything: `git log --oneline -3`
+should show this handoff commit (or later); `CLAUDE.md` and `docs/HANDOFF.md`
+must exist at repo root. When you finish a task, update the "NOT done" list
+below (move your item to done, or note partial progress) so the next agent —
+Claude or Codex — doesn't redo or conflict with your work.
+
 ## What this is
 Single-city, list-only local **service-request board** for Sault Ste. Marie
 (Indeed-shaped: residents post needs, tradespeople browse + contact directly).
@@ -62,6 +82,11 @@ be crawlable (SSR/SSG).
 ## NOT done — next work (priority order)
 1. **ToS / Privacy / Disclaimer standalone pages** (trilingual). Currently only an
    inline disclaimer string. Upgrade Gate + needs lawyer review.
+   → **Assigned to Codex** (in progress/next, as of this handoff). Scope: three
+   trilingual routes under `src/app/[locale]/`, linked from `Header`/a new footer,
+   draft copy clearly marked as needing lawyer review, `npm run build` + `npm run
+   lint` green before commit. Do not start item 2+ until this is confirmed done
+   (check git log / this file) to avoid duplicate work.
 2. **Async translation queue** — move `translate-request.ts` off the request path
    to Supabase pg_cron/Edge Function; add retry + a `pending` state.
 3. **Translation proofreading UI** in `/me` — let posters edit MT (set
