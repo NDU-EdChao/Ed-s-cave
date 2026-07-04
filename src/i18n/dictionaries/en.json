@@ -6,14 +6,72 @@
   },
   "nav": {
     "post": "Post a request",
-    "browse": "Browse requests"
+    "browse": "Browse requests",
+    "home": "Home"
   },
   "home": {
     "heading": "Find local help in Sault Ste. Marie",
     "subheading": "Post what you need. Local tradespeople see it and reach out to you.",
-    "phase": "Phase 0 — foundation. Modules land next."
+    "phase": "List-only. No matchmaking, no commission, no payments.",
+    "cities": "Cities"
   },
   "lang": {
     "switch": "Language"
+  },
+  "categories": {
+    "snow-removal": "Snow removal",
+    "furnace-hvac": "Furnace & HVAC",
+    "handyman": "Handyman",
+    "junk-moving": "Junk removal & moving"
+  },
+  "board": {
+    "latest": "Latest requests",
+    "postCta": "Post a request",
+    "empty": "No open requests here yet. Be the first to post one.",
+    "autoTranslated": "Auto-translated",
+    "untranslated": "Shown in the original language",
+    "revealContact": "Show contact",
+    "area": "Area",
+    "preferredTime": "Preferred time",
+    "postedOn": "Posted",
+    "report": "Report",
+    "reported": "Reported. Thank you.",
+    "reportReason": "Why are you reporting this?",
+    "disclaimer": "Sault Trades only lists requests — we don't verify, match, or take part in any deal. Contact details belong to the poster; verify licensing and insurance yourself."
+  },
+  "landing": {
+    "introLead": "Need {category} in {city}? Post a request and local providers reach out to you — free, no middleman."
+  },
+  "post": {
+    "title": "Post a request",
+    "fCategory": "Category",
+    "fTitle": "Title",
+    "fDescription": "Describe what you need",
+    "fArea": "Approximate area (not your full address)",
+    "fPreferredTime": "Preferred time (optional)",
+    "contactMethod": "How should providers reach you?",
+    "phone": "Phone",
+    "email": "Email",
+    "contactValue": "Contact details (shown only after someone taps 'Show contact')",
+    "writtenIn": "Language you wrote this in",
+    "translateInto": "Also translate into (optional)",
+    "baseNote": "English is the shared base language.",
+    "submit": "Post request",
+    "loginRequired": "Sign in to post a request."
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "emailLabel": "Email",
+    "sendLink": "Send me a sign-in link",
+    "linkSent": "Check your email for a sign-in link.",
+    "signOut": "Sign out",
+    "loginCta": "Sign in"
+  },
+  "me": {
+    "title": "My requests",
+    "empty": "You haven't posted any requests yet.",
+    "close": "Close",
+    "closed": "Closed",
+    "open": "Open"
   }
 }

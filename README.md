@@ -34,4 +34,20 @@ Apply with the Supabase CLI (`supabase db push`) then run the seed. See
 
 ## Status
 - **Phase 0 (done):** scaffold, trilingual i18n skeleton, base config tables + RLS + seed, deploy plan.
-- **Phase 1 (next):** job-request board, per-locale content translation pipeline, city × category SEO landing pages, gated contact reveal.
+- **Phase 1 (done, code-complete):** job-request board (`job_requests` + gated
+  `job_request_contacts` + `job_request_translations` + `contact_reveals` +
+  `reports`), city × category SEO landing pages (SSR, hreflang, `ItemList`),
+  request detail with click-to-reveal contact, magic-link auth, post/manage/close
+  flow, machine-translation pipeline (Google default; DeepL optional for zh-Hans),
+  reporting/takedown.
+
+  Runtime paths (auth, DB reads/writes, translation calls) need a live Supabase
+  project + a Google Translate key to exercise — see `docs/DEPLOY.md`. The build
+  degrades gracefully to empty when env is absent.
+
+### Not yet (deliberately deferred)
+- Translation moved to a real async queue (Supabase `pg_cron` / Edge Function) —
+  currently invoked inline on post.
+- Human-reviewed zh-Hans / pa strings (current ones are draft MT, flagged
+  `_status` in `src/i18n/dictionaries/*`).
+- Photo uploads (Supabase Storage), request expiry job, admin console.

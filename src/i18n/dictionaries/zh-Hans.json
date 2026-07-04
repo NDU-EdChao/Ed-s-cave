@@ -6,14 +6,72 @@
   },
   "nav": {
     "post": "发布需求",
-    "browse": "浏览需求"
+    "browse": "浏览需求",
+    "home": "首页"
   },
   "home": {
     "heading": "在苏圣玛丽找本地帮手",
     "subheading": "发布你的需求，本地技工看到后会主动联系你。",
-    "phase": "Phase 0 — 基础。功能模块随后加入。"
+    "phase": "只做刊登。不撮合、不抽佣、不经手付款。",
+    "cities": "城市"
   },
   "lang": {
     "switch": "语言"
+  },
+  "categories": {
+    "snow-removal": "铲雪除雪",
+    "furnace-hvac": "暖炉与暖通空调",
+    "handyman": "杂修工",
+    "junk-moving": "清运与搬运"
+  },
+  "board": {
+    "latest": "最新需求",
+    "postCta": "发布需求",
+    "empty": "这里还没有需求。成为第一个发布的人。",
+    "autoTranslated": "自动翻译",
+    "untranslated": "以原文显示",
+    "revealContact": "显示联系方式",
+    "area": "区域",
+    "preferredTime": "希望时间",
+    "postedOn": "发布于",
+    "report": "举报",
+    "reported": "已举报，谢谢。",
+    "reportReason": "举报原因是什么？",
+    "disclaimer": "Sault Trades 只做需求刊登——我们不核实、不撮合、不参与任何交易。联系方式属于发布者；执照与保险请自行核实。"
+  },
+  "landing": {
+    "introLead": "在{city}需要{category}？发布需求，本地服务者会主动联系你——免费、无中间人。"
+  },
+  "post": {
+    "title": "发布需求",
+    "fCategory": "类别",
+    "fTitle": "标题",
+    "fDescription": "描述你的需求",
+    "fArea": "大概区域（不要填完整地址）",
+    "fPreferredTime": "希望时间（可选）",
+    "contactMethod": "服务者如何联系你？",
+    "phone": "电话",
+    "email": "邮箱",
+    "contactValue": "联系方式（仅在有人点击“显示联系方式”后才显示）",
+    "writtenIn": "你使用的语言",
+    "translateInto": "同时翻译成（可选）",
+    "baseNote": "英文为共同基础语言。",
+    "submit": "发布需求",
+    "loginRequired": "登录后才能发布需求。"
+  },
+  "auth": {
+    "loginTitle": "登录",
+    "emailLabel": "邮箱",
+    "sendLink": "给我发送登录链接",
+    "linkSent": "请查收邮件中的登录链接。",
+    "signOut": "退出登录",
+    "loginCta": "登录"
+  },
+  "me": {
+    "title": "我的需求",
+    "empty": "你还没有发布任何需求。",
+    "close": "关闭",
+    "closed": "已关闭",
+    "open": "开放中"
   }
 }
