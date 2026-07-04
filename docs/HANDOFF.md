@@ -60,6 +60,48 @@ be crawlable (SSR/SSG).
   LoginForm (client).
 - `supabase/migrations/{0001_init,0002_board}.sql`, `supabase/seed.sql`.
 
+## New product decisions — 2026-07-05 (owner, NOT yet implemented)
+Owner specified these on top of the existing red lines. None of the below is
+coded yet — this is a spec update only. Whoever picks this up next should plan
+in small steps and confirm before large changes (owner's instruction).
+
+1. **Contact reveal requires login** (currently it does NOT — gap, see below).
+   - Logged-out viewers on the request detail page see "Sign in to view contact"
+     instead of the reveal button.
+   - Only logged-in users can click to reveal.
+   - **`src/app/api/reveal/route.ts` must check auth server-side** — it
+     currently has NO auth check at all (only validates `job_requests.status`
+     and does IP-hash rate limiting). Client-side gating alone is not
+     sufficient; the route itself must reject unauthenticated requests.
+   - Every reveal is still logged to `contact_reveals` regardless.
+2. **Simplify the homepage** to first-screen-only: pick city, pick posting
+   language, post a request, browse requests. Trim anything else from the
+   first viewport.
+3. **Simplify the post form fields** to: source language, city, category,
+   title, description, approximate area (no full address), preferred time,
+   number of helpers needed, budget/hourly estimate, up to 2 photos, contact
+   method+value. (Current form at `src/app/[locale]/[city]/post/page.tsx`
+   already has most of these except helper count, budget estimate, and photos.)
+4. **Character limits**: title ≤80, description ≤600, area ≤80, preferred time
+   ≤120, contact value ≤120. Not yet enforced client- or server-side (
+   `src/lib/actions.ts` `createRequest` has no length validation today).
+5. **Photos**: max 2 per request, via Supabase Storage, written to
+   `job_requests.photo_urls` (column already exists, unused). Must not leak
+   full address / unnecessary personal info — needs UI copy warning posters,
+   and possibly EXIF stripping on upload.
+6. **Language strategy reaffirmed** (matches current `ec29b9f` implementation —
+   no change needed): poster writes in their own language; original is always
+   the source of truth; English is an auxiliary machine translation only; if
+   original and English disagree, original wins; source-language + English-only
+   (no multi-language checkbox UI); language is read/categorization only, never
+   used to filter or exclude responders.
+7. **Login providers**: MVP = Google OAuth + email magic link (magic link
+   already implemented via Supabase; Google OAuth not yet wired). Later =
+   Facebook + Apple login.
+8. Red lines unchanged (list-only, no matchmaking/commission/payments, no
+   contract/dispute involvement, area-only privacy, contact gated+logged,
+   SSR/SSG crawlable public pages, build must degrade gracefully with no env).
+
 ## Key decisions (don't undo without reason)
 - **Contact gating is enforced in the DB**: `contact_value` lives in
   `job_request_contacts`, a table with RLS on and **no read policy** → anon key
@@ -104,6 +146,10 @@ be crawlable (SSR/SSG).
   not production).
 
 ## NOT done — next work (priority order)
+0. **[NEW, highest priority] Gate `/api/reveal` behind login** — see "New
+   product decisions" #1 above. This is a real red-line gap in the current
+   deployed code (route has zero auth check today), not just a nice-to-have.
+   Do this before anything else below.
 1. **Done:** ToS / Privacy / Disclaimer standalone pages (trilingual draft) are
    under `src/app/[locale]/{terms,privacy,disclaimer}`. Header/Footer link them.
    Legal text is still draft copy and needs lawyer + human language review.
@@ -113,10 +159,18 @@ be crawlable (SSR/SSG).
 3. **Translation proofreading UI** in `/me` — let posters edit MT (set
    `source='machine_edited'`), per `多語貼文模組規格.md`.
 4. **Human-reviewed** zh-Hans/pa UI strings + legal copy (replace draft MT).
-5. **Photo uploads** (Supabase Storage, signed access) for `job_requests.photo_urls`.
+5. **Photo uploads** (Supabase Storage, signed access) for `job_requests.photo_urls`,
+   max 2 — see "New product decisions" #5 for the address/PII-leak caveat.
 6. **Request expiry** (`expires_at`) job + auto-close stale posts.
 7. Language switcher should preserve the current path (today it links to `/{locale}`).
 8. Admin console (moderate reports, take down requests).
+9. **[NEW]** Homepage simplification to first-screen-only (city/language/post/
+   browse) — see "New product decisions" #2.
+10. **[NEW]** Post form: add helper-count + budget/hourly-estimate fields;
+    enforce character limits (title 80 / description 600 / area 80 / preferred
+    time 120 / contact value 120) client- and server-side — see #3–#4 above.
+11. **[NEW]** Google OAuth login (magic link already done) — see #7 above;
+    Facebook/Apple explicitly deferred to later, not MVP.
 
 ## Run / test
 ```bash
