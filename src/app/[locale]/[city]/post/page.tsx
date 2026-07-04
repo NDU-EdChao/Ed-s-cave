@@ -102,21 +102,8 @@ export default async function PostRequest({
                 </option>
               ))}
             </select>
+            <p className="mt-1 text-xs text-zinc-400">{dict.post.languageNote}</p>
           </label>
-
-          <fieldset className="text-sm">
-            <legend className="font-medium">{dict.post.translateInto}</legend>
-            <p className="text-xs text-zinc-400">{dict.post.baseNote}</p>
-            <div className="mt-1 flex flex-wrap gap-4">
-              {locales.map((l) => (
-                <label key={l} className="flex items-center gap-1">
-                  {/* neutral menu: nothing pre-checked; poster opts in per post */}
-                  <input type="checkbox" name={`translate_${l}`} />
-                  {localeLabels[l]}
-                </label>
-              ))}
-            </div>
-          </fieldset>
 
           <button
             type="submit"

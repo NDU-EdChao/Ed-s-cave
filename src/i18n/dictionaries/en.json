@@ -56,9 +56,10 @@
     "phone": "Phone",
     "email": "Email",
     "contactValue": "Contact details (shown only after someone taps 'Show contact')",
-    "writtenIn": "Language you wrote this in",
+    "writtenIn": "Post language",
     "translateInto": "Also translate into (optional)",
-    "baseNote": "English is the shared base language.",
+    "baseNote": "Choose the language used in this post.",
+    "languageNote": "Choose the language you are writing in. If it is not English, the site will create an English machine translation for readability. Anyone may respond if they can provide the service.",
     "submit": "Post request",
     "loginRequired": "Sign in to post a request."
   },

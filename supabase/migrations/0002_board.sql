@@ -4,7 +4,7 @@
 --    read policy, so an anon key cannot scrape it. It is served only via a
 --    server route that logs the reveal (service_role).
 --  * Privacy: job_requests stores area_label only (no full address).
---  * Neutral language menu: source_lang + poster-selected target translations.
+--  * Neutral language menu: source_lang + one English translation when needed.
 --  * Takedown: removing/closing a request hides it and its translations (RLS
 --    keys translation visibility off the parent being 'open').
 

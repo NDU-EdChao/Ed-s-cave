@@ -65,12 +65,14 @@ be crawlable (SSR/SSG).
   `job_request_contacts`, a table with RLS on and **no read policy** → anon key
   cannot scrape it. Served only via `/api/reveal` (service_role) which logs to
   `contact_reveals` + rate-limits per viewer-IP-hash. Verified with an `anon` role.
-- **Neutral language menu**: English is the base; poster opts into zh-Hans/pa per
-  post (nothing pre-checked). Platform never filters responders by language.
+- **Neutral language menu**: poster chooses the language they wrote in. If it is
+  not English, the create path currently attempts one machine translation into
+  English only. Platform never filters responders by language.
 - **No thin/doorway pages**: per-locale request pages that lack a translation show
   the original and set `<link rel=canonical>` to the source-language URL.
-- **Translation** runs inline in the create action today. Should move to a
-  Supabase-side async queue (pg_cron / Edge Function).
+- **Translation** currently runs inline in the create action, but only for
+  source-language → English. Should move to a Supabase-side async queue
+  (pg_cron / Edge Function).
 
 ## Verified locally (2026-07)
 - 0001+0002+seed apply cleanly on Postgres 16 (with an `auth` schema stub).
@@ -81,13 +83,16 @@ be crawlable (SSR/SSG).
 - `eslint` + `next build` green after adding trilingual Terms / Privacy /
   Disclaimer pages and legal links. Local shell lacked `npm`, so verification used
   bundled Node with local `node_modules/.bin`.
+- `eslint` + `next build` green after simplifying posting language to
+  source-language + English-only machine translation.
 
 ## NOT done — next work (priority order)
 1. **Done:** ToS / Privacy / Disclaimer standalone pages (trilingual draft) are
    under `src/app/[locale]/{terms,privacy,disclaimer}`. Header/Footer link them.
    Legal text is still draft copy and needs lawyer + human language review.
-2. **Async translation queue** — move `translate-request.ts` off the request path
-   to Supabase pg_cron/Edge Function; add retry + a `pending` state.
+2. **Async English translation queue** — move `translate-request.ts` off the
+   request path to Supabase pg_cron/Edge Function; add retry + a `pending`
+   state. Keep MVP scope to source language + English only.
 3. **Translation proofreading UI** in `/me` — let posters edit MT (set
    `source='machine_edited'`), per `多語貼文模組規格.md`.
 4. **Human-reviewed** zh-Hans/pa UI strings + legal copy (replace draft MT).

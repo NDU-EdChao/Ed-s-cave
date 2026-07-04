@@ -48,6 +48,7 @@ export interface Dictionary {
     writtenIn: string;
     translateInto: string;
     baseNote: string;
+    languageNote: string;
     submit: string;
     loginRequired: string;
   };

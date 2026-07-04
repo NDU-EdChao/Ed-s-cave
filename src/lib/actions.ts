@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import {
   isLocale,
-  locales,
   defaultLocale,
   type Locale,
 } from "@/i18n/config";
@@ -53,9 +52,6 @@ export async function createRequest(formData: FormData) {
   const contactValue = String(formData.get("contactValue") ?? "").trim();
   const writtenIn = String(formData.get("writtenIn") ?? l);
   const source: Locale = isLocale(writtenIn) ? writtenIn : "en";
-  const targets = locales.filter(
-    (x) => formData.get(`translate_${x}`) === "on" && x !== source,
-  );
 
   if (!title || !description || !contactValue) {
     redirect(`/${l}/${citySlug}/post?category=${categorySlug}&error=1`);
@@ -93,7 +89,7 @@ export async function createRequest(formData: FormData) {
   await translateJobRequest({
     requestId: inserted.id,
     source,
-    targets,
+    targets: source === "en" ? [] : ["en"],
     title,
     description,
   });
